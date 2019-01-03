@@ -113,7 +113,7 @@ app.get('/api/moments', (req, res) => {
     //     ]
     // }
 
-    console.log("filter", filter);
+    // console.log("filter", filter)
 
     db.collection('sentiance').aggregate(filter).toArray().then(list => {
         const metadata = { total_count: list.length };
@@ -171,7 +171,7 @@ app.get('/api/events', (req, res) => {
     // }
 
 
-    console.log("filter", filter);
+    // console.log("filter", filter)
 
     db.collection('sentiance').aggregate(filter).toArray().then(list => {
         const metadata = { total_count: list.length };
@@ -190,25 +190,6 @@ app.get('/api/dashboard', (req, res) => {
         const metadata = { total_count: list.length };
         // console.log("List received", list)
         res.json({ _metadata: metadata, records: list });
-    }).catch(error => {
-        console.log(error);
-        res.status(500).json({ message: `Internal Server Error: ${error}` });
-    });
-});
-
-app.get('/api/landmark/:id', (req, res) => {
-    let issueId;
-    console.log("PARAMSSS ", req.params);
-    try {
-        issueId = new _mongodb.ObjectId(req.params.id);
-    } catch (error) {
-        res.status(422).json({ message: `Invalid issue ID format: ${error}` });
-        return;
-    }
-
-    db.collection('lmr').find({ _id: issueId }).limit(1).next().then(issue => {
-        console.log("landmark retrieved from data ", issue);
-        if (!issue) res.status(404).json({ message: `No such issue: ${issueId}` });else res.json(issue);
     }).catch(error => {
         console.log(error);
         res.status(500).json({ message: `Internal Server Error: ${error}` });
@@ -236,62 +217,6 @@ app.post('/api/event', (req, res) => {
     db.collection('sentiance').updateOne({}, { $push: { "data.user.event_history": newEvent } }).then(result => console.log("Added evnt")).catch(err => {
         console.log(err);
         res.status(500).json({ message: `Internal Server Error: ${err}` });
-    });
-});
-
-app.put('/api/landmark/:id', (req, res) => {
-    let landmarkId;
-    try {
-        landmarkId = new _mongodb.ObjectId(req.params.id);
-    } catch (error) {
-        res.status(422).json({ message: `Invalid issue ID format: ${error}` });
-        return;
-    }
-
-    const landmark = req.body;
-    console.log("landmark put req body", landmark);
-
-    delete landmark._id;
-
-    //   console.log("issue =>",issue);
-    if (landmark.location) {
-        landmark.location.lat = parseFloat(landmark.location.lat);
-        landmark.location.lng = parseFloat(landmark.location.lng);
-    }
-    // landmark.date = new Date(landmark.date);
-    landmark.date = new Date(); //Last Updated
-
-
-    console.log(JSON.stringify(landmark));
-
-    //   const err = Issue.validateIssue(landmark);
-    //   if (err) {
-    //     res.status(422).json({ message: `Invalid request: ${err}` });
-    //     return;
-    //   }
-
-    db.collection('lmr').updateOne({ _id: landmarkId }, { $set: landmark }).then(() => db.collection('lmr').find({ _id: landmarkId }).limit(1).next()).then(savedLandmark => {
-        res.json(savedLandmark);
-    }).catch(error => {
-        console.log(error);
-        res.status(500).json({ message: `Internal Server Error: ${error}` });
-    });
-});
-
-app.delete('/api/landmark/:id', (req, res) => {
-    let landmarkId;
-    try {
-        landmarkId = new _mongodb.ObjectId(req.params.id);
-    } catch (error) {
-        res.status(422).json({ message: `Invalid issue ID format: ${error}` });
-        return;
-    }
-
-    db.collection('lmr').deleteOne({ _id: landmarkId }).then(deleteResult => {
-        if (deleteResult.result.n === 1) res.json({ status: 'OK' });else res.json({ status: 'Warning: object not found' });
-    }).catch(error => {
-        console.log(error);
-        res.status(500).json({ message: `Internal Server Error: ${errror}` });
     });
 });
 
