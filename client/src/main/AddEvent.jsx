@@ -46,7 +46,7 @@ class AddEvent extends React.Component {
   }
 
     onChangeStart(e){
-        console.log("Start changed", e.target.value)
+        // console.log("Start changed", e.target.value)
         this.setState({ start: e.target.value, changed: true});
     }
     onChangeEnd(e){
@@ -80,7 +80,7 @@ class AddEvent extends React.Component {
             analysis_type: form.type.value,
         };
 
-        console.log("new Event ", newEvent)
+        // console.log("new Event ", newEvent)
 
         fetch('/api/event', {
             method: 'POST',
@@ -89,7 +89,7 @@ class AddEvent extends React.Component {
         }).then(response => {
             if (response.ok) {
                 response.json().then(result => {
-                    console.log("Added Event response", result)
+                    // console.log("Added Event response", result)
                 this.props.history.push(`/events`);
             });
             } else {

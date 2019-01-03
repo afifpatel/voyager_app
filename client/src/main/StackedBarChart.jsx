@@ -17,7 +17,7 @@ render () {
     //     return a.distance - b.distance;
     // })   
 
-    console.log("PROPS IN CHART", this.props)
+    // console.log("PROPS IN CHART", this.props)
   	return (
         <div>
         <LineChart width={1500} height={300} data={this.props.data}

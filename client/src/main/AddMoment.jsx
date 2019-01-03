@@ -44,7 +44,7 @@ class AddMoment extends React.Component {
   }
 
     onChangeStart(e){
-        console.log("Start changed", e.target.value)
+        // console.log("Start changed", e.target.value)
         this.setState({ start: e.target.value, changed: true});
     }
     onChangeEnd(e){
@@ -78,7 +78,7 @@ class AddMoment extends React.Component {
             moment_definition_id: form.id.value,
         };
 
-        console.log("new Moment ", newMoment)
+        // console.log("new Moment ", newMoment)
 
         fetch('/api/moment', {
             method: 'POST',
@@ -87,7 +87,7 @@ class AddMoment extends React.Component {
         }).then(response => {
             if (response.ok) {
                 response.json().then(result => {
-                    console.log("Added Moment response", result)
+                    // console.log("Added Moment response", result)
                 this.props.history.push(`/moments`);
             });
             } else {

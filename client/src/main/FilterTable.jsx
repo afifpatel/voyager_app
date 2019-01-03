@@ -27,7 +27,7 @@ export default class FilterTable extends React.Component{
         });
     }
     onChangeStart(e){
-        console.log("Start changed", e.target.value)
+        // console.log("Start changed", e.target.value)
         this.setState({ start: e.target.value, changed: true});
     }
     onChangeEnd(e){
@@ -35,10 +35,10 @@ export default class FilterTable extends React.Component{
     }
 
     applyFilter(){
-        console.log("APPLIED FILTER", this.state.start, this.state.end)
+        // console.log("APPLIED FILTER", this.state.start, this.state.end)
         const new_start = moment.tz(this.state.start,"europe/brussels").format('YYYY-MM-DDTHH:mm:ss.SSS')
         const new_end = moment.tz(this.state.end,"europe/brussels").format('YYYY-MM-DDTHH:mm:ss.SSS')
-        console.log("CHANGED date", new_start, new_end)
+        // console.log("CHANGED date", new_start, new_end)
         const newFilter = {};
         if(this.state.start) newFilter.start = new_start
         if(this.state.end) newFilter.end = new_end;

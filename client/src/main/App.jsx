@@ -11,8 +11,6 @@ import AddEvent from './AddEvent.jsx';
 
 const contentNode = document.getElementById('contents');
 
-const NoMatch = () => <p>Page Not Found</p>;
-
 const Header = () => (
 <Navbar fluid>
     <Navbar.Header>
@@ -52,11 +50,11 @@ export default function App(props){
         <Header />
         <div className="container-fluid">
             {props.children}
-            <hr />
+            {/* <hr />
             <h5><small>
-            Full source code available at this <a href = "https://github.com/afifpatel/LandmarkRemark">
+            Full source code available at this <a href = "https://github.com/afifpatel/voyager_app">
             GitHub repistory</a>
-            </small></h5>
+            </small></h5> */}
         </div>
         </div>
     )

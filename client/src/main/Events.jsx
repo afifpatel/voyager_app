@@ -12,7 +12,7 @@ import moment from 'moment-timezone'
 
 
 function IssueTable(props){
-    console.log("Props", props.issues_prop)
+    // console.log("Props", props.issues_prop)
     const issueRows= props.issues_prop.map(  (element, index) => <IssueRow key={index} row_value={element} deleteLandmark={props.deleteLandmark}/>)
     return(
             // <table className="bordered-table">
@@ -203,13 +203,13 @@ dismissToast() {
         fetch(`/api/events${this.props.location.search}`).then(response =>{
             if(response.ok){
                 response.json().then(data => {
-                console.log("total count of recordsssss :",data._metadata.total_count);
+                // console.log("total count of recordsssss :",data._metadata.total_count);
                 // let events = []
                 // console.log("Records :",events);
                 // data.records.forEach( record => {
                 //     events.push(record.data.user.event_history)
                 // })
-            console.log("Events :",data.records[0].events);
+            // console.log("Events :",data.records[0].events);
             this.setState({ events : data.records[0].events });
             });
         } else {

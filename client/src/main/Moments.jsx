@@ -174,7 +174,7 @@ dismissToast() {
     componentDidUpdate(prevProps){
          const oldQuery = parse(prevProps.location.search);
          const newQuery = parse(this.props.location.search);
-         console.log('In CDU old new',oldQuery, newQuery);
+        //  console.log('In CDU old new',oldQuery, newQuery);
 
          if (oldQuery.start === newQuery.start && oldQuery.end === newQuery.end) {
              return;
@@ -188,7 +188,7 @@ dismissToast() {
         fetch(`/api/moments${this.props.location.search}`).then(response =>{
             if(response.ok){
                 response.json().then(data => {
-                console.log("total count of recordsssss :",data._metadata.total_count);
+                // console.log("total count of recordsssss :",data._metadata.total_count);
                 // console.log("Records to push:",data.records.moments);
 
                 // let moments = []
@@ -197,7 +197,7 @@ dismissToast() {
                 //     moments.push(record.data.user.moment_history)
                 // })
 
-            console.log("Moments :",data.records[0].moments);
+            // console.log("Moments :",data.records[0].moments);
             this.setState({ moments : data.records[0].moments });
             });
         } else {
@@ -214,7 +214,7 @@ dismissToast() {
 
     render(){
         const query = parse(this.props.location.search);
-        console.log("In Moments", query)
+        // console.log("In Moments", query)
 
         return(
             <div>

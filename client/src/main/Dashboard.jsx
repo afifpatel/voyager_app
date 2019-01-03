@@ -127,10 +127,10 @@ export default class Dashboard extends React.Component {
 
         const data = [12, 5, 6, 6, 9, 10];
         let transport_data = []
-        // transport_data.push({ "name": "Total duration of transport by stationary mode in hours", value: Math.round(total_stationary_duration/(1000*3600))})
+        transport_data.push({ "name": "Total duration of transport by stationary mode in hours", value: Math.round(total_stationary_duration/(1000*3600))})
         transport_data.push({ "name": "Total duration of transport by transport mode in hours", value: Math.round(total_transport_duration/(1000*3600))})
         transport_data.push({ "name": "Total amount of transport by transport mode", value: transport_count})
-        // transport_data.push({ "name": "Total distance travelled by transport mode x10 kms", value: Math.round(total_distance/10000) })
+        transport_data.push({ "name": "Total distance travelled by transport mode x10 kms", value: Math.round(total_distance/10000) })
         transport_data.push({ "name": "Total distance travelled by car in kms", value: Math.round(car_distance/1000) })
 
 
